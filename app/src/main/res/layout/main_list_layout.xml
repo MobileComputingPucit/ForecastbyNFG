@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-13dp"
+        tools:layout_editor_absoluteY="-16dp">
+
+        <TextView
+            android:id="@+id/day_textview_mainactivitylayout_XML"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="99dp"
+            android:hint="Saturday"
+            android:textColorHint="#010d21"
+            android:backgroundTint="#010d21"/>
+
+        <TextView
+            android:id="@+id/temprature_textview_mainactivitylayout_XML"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/day_textview_mainactivitylayout_XML"
+            android:layout_marginStart="79dp"
+            android:layout_toEndOf="@+id/day_textview_mainactivitylayout_XML"
+            android:hint="7 C"
+            android:textColorHint="#010d21"
+            android:backgroundTint="#010d21"/>
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/temprature_textview_mainactivitylayout_XML"
+            android:layout_alignParentEnd="true"
+            app:srcCompat="@drawable/sunny" />
+
+
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

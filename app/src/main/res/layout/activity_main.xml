@@ -6,13 +6,117 @@
     android:layout_height="match_parent"
     tools:context="pk.edu.pucit.bcsf14m529.farazmazhar.forecastbynfg.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/background_02" />
+
+
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/settin_icon" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toStartOf="@id/imageView4"
+            android:layout_alignBottom="@id/imageView4"
+            app:srcCompat="@android:drawable/ic_menu_mylocation" />
+
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignBottom="@id/imageView4"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@id/imageView2"
+            android:layout_marginStart="7dp"
+            android:ems="10"
+            android:textColor="#c9a9d6"
+            android:textColorHint="#c9a9d6"
+            android:backgroundTint="#c9a9d6"
+            android:inputType="textPersonName"
+            android:hint="City Name" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/editText"
+            android:layout_below="@+id/editText"
+            android:layout_marginStart="46dp"
+            android:layout_marginTop="108dp"
+            android:textColorHint="#c6cbd3"
+            android:backgroundTint="#c6cbd3"
+            android:textSize="125dp"
+            android:textColor="#c9a9d6"
+            android:hint="45" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView"
+            android:layout_below="@+id/textView"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="20dp"
+            android:textColorHint="#ede8ef"
+            android:backgroundTint="#ede8ef"
+            android:hint="15 / 35"
+            />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView2"
+            android:layout_below="@+id/textView2"
+            android:layout_marginTop="12dp"
+            android:hint="Partly Cloudy"
+            android:textColorHint="#ede8ef"
+            android:backgroundTint="#ede8ef"/>
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_alignTop="@+id/textView"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="44dp"
+            android:layout_toEndOf="@+id/textView"
+            android:src="@drawable/thunder" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/editText"
+            android:layout_marginTop="400dp" />
+
+
+
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
