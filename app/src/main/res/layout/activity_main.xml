@@ -69,8 +69,8 @@
             android:layout_below="@+id/editText"
             android:layout_marginStart="46dp"
             android:layout_marginTop="108dp"
-            android:textColorHint="#c9a9d6"
-            android:backgroundTint="#c9a9d6"
+            android:textColorHint="#c6cbd3"
+            android:backgroundTint="#c6cbd3"
             android:textSize="125dp"
             android:textColor="#c9a9d6"
             android:hint="45" />
@@ -109,56 +109,13 @@
             android:layout_toEndOf="@+id/textView"
             android:src="@drawable/thunder" />
 
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView3"
-            android:layout_marginTop="68dp"
-            android:text="TextView" />
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/editText"
+            android:layout_marginTop="400dp" />
 
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView10"
-            android:layout_marginTop="15dp"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/textView"
-            android:layout_alignTop="@+id/textView10"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textView12"
-            android:layout_below="@+id/textView11"
-            android:text="TextView" />
-
-        <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/textView13"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="17dp"
-            app:srcCompat="@drawable/thunder" />
-
-        <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignTop="@+id/textView13"
-            app:srcCompat="@drawable/sunny" />
 
 
     </RelativeLayout>
