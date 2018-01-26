@@ -15,7 +15,16 @@ public class Weather {
     private String clouds;
     private String weather;
     private String humidity;
+    private String visibility;
 
+
+    public String getVisibility() {
+        return visibility;
+    }
+
+    public void setVisibility(String visibility) {
+        this.visibility = visibility;
+    }
 
     /**
      * ADT Weather.
@@ -30,6 +39,13 @@ public class Weather {
      * @param weather String
      * @param humidity String
      */
+
+
+    public Weather()
+    {
+
+    }
+
     public Weather(int id, int city_id, String current_temperature, String high_temperature, String low_temperature, String wind, String pressure, String clouds, String weather, String humidity) {
         this.id = id;
         this.city_id = city_id;

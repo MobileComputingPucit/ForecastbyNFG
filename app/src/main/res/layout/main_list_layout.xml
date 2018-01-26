@@ -1,48 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="-13dp"
-        tools:layout_editor_absoluteY="-16dp">
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-        <TextView
-            android:id="@+id/day_textview_mainactivitylayout_XML"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="99dp"
-            android:hint="Saturday"
-            android:textColorHint="#010d21"
-            android:backgroundTint="#010d21"/>
-
-        <TextView
-            android:id="@+id/temprature_textview_mainactivitylayout_XML"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/day_textview_mainactivitylayout_XML"
-            android:layout_marginStart="79dp"
-            android:layout_toEndOf="@+id/day_textview_mainactivitylayout_XML"
-            android:hint="7 C"
-            android:textColorHint="#010d21"
-            android:backgroundTint="#010d21"/>
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/sunny_jpg"/>
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/temprature_textview_mainactivitylayout_XML"
-            android:layout_alignParentEnd="true"
-            app:srcCompat="@drawable/sunny" />
+            android:layout_alignParentStart="true"
+            android:textColor="#ffffff"
+            android:text="Lahore"
+            android:fontFamily="sans-serif-smallcaps"
+            android:id="@+id/location_City_list_row_layout_xml"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:textSize="25dp"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:textColor="#ffffff"
+            android:layout_below="@id/location_City_list_row_layout_xml"
+            android:text="Pakistan"
+            android:gravity="center"
+            android:id="@+id/location_country_list_row_xml"
+            android:fontFamily="sans-serif-condensed"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:id="@+id/temperature_textView_main_xml"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColorHint="#ffffff"
+            android:textSize="100dp"
+            android:text="45"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:id="@+id/degreeSign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColorHint="#ffffff"
+            android:textSize="30dp"
+            android:text="o"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:layout_toRightOf="@id/temperature_textView_main_xml"
+            android:layout_alignTop="@id/temperature_textView_main_xml"/>
+
+        <TextView
+            android:id="@+id/weatherStatus_textView_main_Xml"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/temperature_textView_main_xml"
+            android:text="Partly Cloudy"
+            android:textSize="30dp"
+            android:gravity="center"
+            android:fontFamily="sans-serif"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/highLow_textView_list_row_xml"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15 /20"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:fontFamily="sans-serif"
+            android:textColor="#ffffff"
+            android:layout_below="@+id/weatherStatus_textView_main_Xml"
+            android:layout_alignEnd="@+id/wind_textView_list_row_layout" />
+
+        <TextView
+            android:id="@+id/humidity_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/highLow_textView_list_row_xml"
+            android:text="Humidity: "
+            android:layout_marginTop="10dp"
+            android:gravity="left"
+            android:layout_alignStart="@id/temperature_textView_main_xml"
+            android:fontFamily="sans-serif"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/humidity_textView_list_row_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/highLow_textView_list_row_xml"
+            android:layout_toRightOf="@id/humidity_description"
+            android:text="50 %"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:fontFamily="sans-serif"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/wind_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/humidity_description"
+            android:text="Wind: "
+            android:layout_marginTop="10dp"
+            android:gravity="left"
+            android:layout_alignStart="@id/temperature_textView_main_xml"
+            android:fontFamily="sans-serif"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/wind_textView_list_row_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/humidity_description"
+            android:layout_toRightOf="@id/wind_description"
+            android:text="1.5"
+            android:layout_alignStart="@id/humidity_textView_list_row_layout"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:fontFamily="sans-serif"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/visibility_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/wind_description"
+            android:text="Visibility: "
+            android:layout_marginTop="10dp"
+            android:gravity="left"
+            android:layout_alignStart="@id/temperature_textView_main_xml"
+            android:fontFamily="sans-serif"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/visibility_textView_list_row_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/wind_description"
+            android:layout_toRightOf="@id/visibility_description"
+            android:text="4000"
+            android:layout_alignStart="@id/wind_textView_list_row_layout"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:fontFamily="sans-serif"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff" />
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

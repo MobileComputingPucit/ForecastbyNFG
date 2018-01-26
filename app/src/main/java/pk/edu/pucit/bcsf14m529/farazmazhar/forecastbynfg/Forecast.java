@@ -5,6 +5,7 @@ package pk.edu.pucit.bcsf14m529.farazmazhar.forecastbynfg;
  */
 
 public class Forecast {
+
     private int id;
     private int city_id;
     private String today_weather;
