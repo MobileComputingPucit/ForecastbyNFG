@@ -1,6 +1,12 @@
 package pk.edu.pucit.bcsf14m529.farazmazhar.forecastbynfg;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +14,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.location.Location;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.android.volley.Request;
@@ -16,13 +23,16 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
+public class MainActivity extends AppCompatActivity implements View.OnClickListener ,GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener{
 
     RequestQueue requestQueue;
 
@@ -33,6 +43,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Adapter _refAdapter;
 
     SwipeRefreshLayout swipeRefreshLayout;
+
+    private Location mLastLocation;
+
+    // Google client to interact with Google API
+    private GoogleApiClient mGoogleApiClient;
+
+    double latitude, longitude;
 
 
     @Override
@@ -50,34 +67,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+
+                Toast.makeText(getApplicationContext(),"Refreshing ...", Toast.LENGTH_LONG).show();
                 swipeRefreshLayout.setRefreshing(true);
                 Handler handler=new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         swipeRefreshLayout.setRefreshing(false);
-                        get_weather();
+                        displayLocation();
                     }
                 },3000);
             }
         });
 
 
-        get_weather();
+        buildGoogleApiClient();
+        //displayLocation();
+
 
 
     }
-
 
 
     private void get_weather()
     {
         weatherArrayList.clear();
 
-        StringRequest request = new StringRequest(Request.Method.POST, getUrl(), new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST, getLocationURl(), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
+                Toast.makeText(getApplicationContext(),"Updated !", Toast.LENGTH_SHORT).show();
                 Log.i("response->",response);
                 parse_response(response);
                 _refAdapter.updateRecord(weatherArrayList);
@@ -145,6 +166,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+
+    private String getLocationURl()
+    {
+        StringBuilder weatherUrl= new StringBuilder("http://api.openweathermap.org/data/2.5/weather?");
+        weatherUrl.append("lat=" + String.valueOf(latitude));
+        weatherUrl.append("&lon=" + String.valueOf(longitude));
+        weatherUrl.append("&appid=1a2a0d8fa5b0cb9e70bd9bbcf19f084c");
+
+        return weatherUrl.toString();
+    }
+
     private String getUrl()
     {
 
@@ -177,5 +209,63 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view)
     {
 
+    }
+
+    public void displayLocation() {
+
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},101);
+
+        if(ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+        {
+            mLastLocation = LocationServices.FusedLocationApi
+                    .getLastLocation(mGoogleApiClient);
+
+            if (mLastLocation != null) {
+                 latitude = mLastLocation.getLatitude();
+                 longitude = mLastLocation.getLongitude();
+
+                //Toast.makeText(getApplicationContext(),"Your Location:"+ latitude+" , "+longitude,Toast.LENGTH_SHORT).show();
+
+                get_weather();
+            }
+            else
+            {
+                Toast.makeText(getApplicationContext(),"Location not Accesable",Toast.LENGTH_SHORT).show();
+            }
+
+        }
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (mGoogleApiClient != null) {
+            mGoogleApiClient.connect();
+        }
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+        displayLocation();
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        mGoogleApiClient.connect();
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+
+    protected synchronized void buildGoogleApiClient() {
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API).build();
     }
 }
