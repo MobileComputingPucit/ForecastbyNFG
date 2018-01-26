@@ -1,9 +1,13 @@
 package pk.edu.pucit.bcsf14m529.farazmazhar.forecastbynfg;
 
 import android.Manifest;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -60,8 +64,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         createWidget();
+
         initializeObject();
 
+        displayPromptForEnablingGPS(this);
         locationButton.setOnClickListener(this);
         settingButton.setOnClickListener(this);
 
@@ -80,9 +86,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void run() {
                         swipeRefreshLayout.setRefreshing(false);
-                       // displayLocation();
+                        displayLocation();
 
-                        get_weather();
+                       // get_weather();
                     }
                 },3000);
             }
@@ -92,6 +98,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buildGoogleApiClient();
         //displayLocation();
 
+    }
+
+
+    public  void displayPromptForEnablingGPS(final Activity activity)
+    {
+
+        int off = 0;
+        try {
+            off = Settings.Secure.getInt(getContentResolver(), Settings.Secure.LOCATION_MODE);
+        } catch (Settings.SettingNotFoundException e) {
+            e.printStackTrace();
+        }
+        if(off!=0)
+        {
+            return;
+        }
+
+        final AlertDialog.Builder builder =
+                new AlertDialog.Builder(activity);
+        final String action = Settings.ACTION_LOCATION_SOURCE_SETTINGS;
+        final String message = "Enable either GPS or any other location"
+                + " service to find current location.  Click OK to go to"
+                + " location services settings to let you do so.";
+
+        builder.setMessage(message)
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface d, int id) {
+                                activity.startActivity(new Intent(action));
+                                d.dismiss();
+                            }
+                        })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface d, int id) {
+                                d.cancel();
+                            }
+                        });
+        builder.create().show();
     }
 
     @Override
@@ -196,8 +241,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String getLocationURl()
     {
 
-        Log.i("TL->LATT",pk.edu.pucit.bcsf14m529.farazmazhar.forecastbynfg.Location.localLattidude);
-        Log.i("TL->LON",pk.edu.pucit.bcsf14m529.farazmazhar.forecastbynfg.Location.localLongitude);
+//        Log.i("TL->LATT",pk.edu.pucit.bcsf14m529.farazmazhar.forecastbynfg.Location.localLattidude);
+  //      Log.i("TL->LON",pk.edu.pucit.bcsf14m529.farazmazhar.forecastbynfg.Location.localLongitude);
         StringBuilder weatherUrl= new StringBuilder("http://api.openweathermap.org/data/2.5/weather?");
         weatherUrl.append("lat=" + pk.edu.pucit.bcsf14m529.farazmazhar.forecastbynfg.Location.localLattidude);
         weatherUrl.append("&lon=" + pk.edu.pucit.bcsf14m529.farazmazhar.forecastbynfg.Location.localLongitude);
