@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // Google client to interact with Google API
     private GoogleApiClient mGoogleApiClient;
 
-    double latitude, longitude;
+
+    public static boolean isFromLocationAdapter;
 
 
     @Override
@@ -79,7 +80,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void run() {
                         swipeRefreshLayout.setRefreshing(false);
-                        displayLocation();
+                       // displayLocation();
+
+                        get_weather();
                     }
                 },3000);
             }
@@ -101,8 +104,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else if(view.getId() == R.id.settings_btn_main_xml)
         {
-            Intent intent  = new Intent(getApplicationContext(),settings.class);
-            startActivity(intent);
+           /* Intent intent  = new Intent(getApplicationContext(),settings.class);
+            startActivity(intent);*/
+
+           displayLocation();
         }
     }
 
@@ -163,7 +168,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             _refWeather.setHumidity(recordHolder.getJSONObject("main").getString("humidity"));
 
-            _refWeather.setVisibility(recordHolder.getString("visibility"));
+
+            if(recordHolder.has("visibility"))
+            {
+                _refWeather.setVisibility(recordHolder.getString("visibility"));
+            }
             _refWeather.setWind(recordHolder.getJSONObject("wind").getString("speed"));
 
 
@@ -186,9 +195,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private String getLocationURl()
     {
+
+        Log.i("TL->LATT",pk.edu.pucit.bcsf14m529.farazmazhar.forecastbynfg.Location.localLattidude);
+        Log.i("TL->LON",pk.edu.pucit.bcsf14m529.farazmazhar.forecastbynfg.Location.localLongitude);
         StringBuilder weatherUrl= new StringBuilder("http://api.openweathermap.org/data/2.5/weather?");
-        weatherUrl.append("lat=" + String.valueOf(latitude));
-        weatherUrl.append("&lon=" + String.valueOf(longitude));
+        weatherUrl.append("lat=" + pk.edu.pucit.bcsf14m529.farazmazhar.forecastbynfg.Location.localLattidude);
+        weatherUrl.append("&lon=" + pk.edu.pucit.bcsf14m529.farazmazhar.forecastbynfg.Location.localLongitude);
         weatherUrl.append("&appid=1a2a0d8fa5b0cb9e70bd9bbcf19f084c");
 
         return weatherUrl.toString();
@@ -233,10 +245,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     .getLastLocation(mGoogleApiClient);
 
             if (mLastLocation != null) {
-                 latitude = mLastLocation.getLatitude();
-                 longitude = mLastLocation.getLongitude();
+                 pk.edu.pucit.bcsf14m529.farazmazhar.forecastbynfg.Location.localLattidude = String.valueOf(mLastLocation.getLatitude());
+                pk.edu.pucit.bcsf14m529.farazmazhar.forecastbynfg.Location.localLongitude = String.valueOf(mLastLocation.getLongitude());
 
-                //Toast.makeText(getApplicationContext(),"Your Location:"+ latitude+" , "+longitude,Toast.LENGTH_SHORT).show();
+
+
+                Toast.makeText(getApplicationContext(),"Getting Current Location ..",Toast.LENGTH_SHORT).show();
 
                 get_weather();
             }
@@ -279,5 +293,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API).build();
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(isFromLocationAdapter)
+        {
+           get_weather();
+            isFromLocationAdapter = false;
+        }
+
     }
 }

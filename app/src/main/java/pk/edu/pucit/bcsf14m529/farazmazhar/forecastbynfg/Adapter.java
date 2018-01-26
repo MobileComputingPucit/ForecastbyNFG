@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 
@@ -52,6 +53,26 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewChildWeather> {
         holder.windSpeed.setText(menuData.get(i).getWind() + " m/s");
         holder.Humidity.setText(menuData.get(i).getHumidity() + " % ");
 
+        if(menuData.get(i).getWeather().trim().toLowerCase().equals("fog") || menuData.get(i).getWeather().trim().toLowerCase().equals("smoke") || menuData.get(i).getWeather().trim().toLowerCase().equals("mist"))
+        {
+            holder.background.setImageResource(R.drawable.fog);
+           // holder.background.setBackgroundResource(R.drawable.fog);
+        }
+        else if(menuData.get(i).getWeather().trim().toLowerCase().equals("rain") || menuData.get(i).getWeather().toLowerCase().trim().equals("drizzle") || menuData.get(i).getWeather().toLowerCase().trim().equals("thunderstorm"))
+        {
+            holder.background.setImageResource(R.drawable.rain);
+            //holder.background.setBackgroundResource(R.drawable.rain);
+        }
+        else if(menuData.get(i).getWeather().toLowerCase().trim().equals("few clouds") || menuData.get(i).getWeather().toLowerCase().trim().equals("scattered clouds") || menuData.get(i).getWeather().toLowerCase().trim().equals("broken clouds") )
+        {
+            holder.background.setImageResource(R.drawable.cloudy);
+            //holder.background.setBackgroundResource(R.drawable.cloudy);
+        }
+        else
+        {
+            holder.background.setImageResource(R.drawable.sunny_jpg);
+            //holder.background.setBackgroundResource(R.drawable.sunny_jpg);
+        }
 
     }
 
@@ -77,6 +98,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewChildWeather> {
         TextView visibility;
         TextView windSpeed;
         TextView Humidity;
+        ImageView background;
 
 
         private ViewChildWeather(View itemView)
@@ -91,6 +113,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewChildWeather> {
             visibility = itemView.findViewById(R.id.visibility_textView_list_row_layout);
             windSpeed = itemView.findViewById(R.id.wind_textView_list_row_layout);
             Humidity = itemView.findViewById(R.id.humidity_textView_list_row_layout);
+            background = itemView.findViewById(R.id.imageView_background);
 
         }
 

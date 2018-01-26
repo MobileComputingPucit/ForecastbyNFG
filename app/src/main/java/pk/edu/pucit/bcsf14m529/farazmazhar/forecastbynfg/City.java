@@ -20,6 +20,12 @@ public class City {
      * @param latitude String
      * @param longitude String
      */
+
+
+    public City()
+    {
+
+    }
     public City(int id, String name, String country, String latitude, String longitude) {
         this.id = id;
         this.name = name;

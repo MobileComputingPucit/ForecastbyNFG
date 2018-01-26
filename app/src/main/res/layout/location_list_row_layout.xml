@@ -2,33 +2,42 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="10dp">
+    android:layout_height="wrap_content">
 
-    <TextView
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lahore"
-        android:fontFamily="sans-serif-condensed"
-        android:textStyle="bold"
-        android:textSize="18dp"
-        android:id="@+id/cityName_location_listRow_xml"/>
+        android:layout_margin="10dp"
+        android:id="@+id/topLayout_list_row_layout"
+        android:clickable="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lahore"
-        android:fontFamily="sans-serif-condensed"
-        android:layout_below="@id/cityName_location_listRow_xml"
-        android:id="@+id/country_location_listRow_xml"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lahore"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:id="@+id/cityName_location_listRow_xml"/>
 
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="10dp"
-        android:src="@drawable/location_sec"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lahore"
+            android:fontFamily="sans-serif-condensed"
+            android:layout_below="@id/cityName_location_listRow_xml"
+            android:id="@+id/country_location_listRow_xml"/>
 
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/location_sec"/>
+
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

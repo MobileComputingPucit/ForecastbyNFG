@@ -21,7 +21,12 @@
         </activity>
         <activity android:name=".addCityActivity" />
         <activity android:name=".settings" />
-        <activity android:name=".LocationsActivity"></activity>
+        <activity android:name=".LocationsActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBCXlc2pXA_eRkkFUBuw6EdYm489KoKWXY" />
+
     </application>
 
 </manifest>

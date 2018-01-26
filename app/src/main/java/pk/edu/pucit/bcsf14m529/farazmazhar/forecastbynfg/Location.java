@@ -8,4 +8,6 @@ public class Location {
 
     public static String city;
     public static String country;
+    public static String localLattidude;
+    public static String localLongitude;
 }
