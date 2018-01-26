@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="pk.edu.pucit.bcsf14m529.farazmazhar.forecastbynfg.LocationsActivity">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swiperefresh_location_xml"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="fill_parent"
+                android:id="@+id/recyclerView_locations_xml"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:clickable="true"
+        android:id="@+id/addNewLocation_imageView_xml"
+        android:src="@drawable/add_location_icon"
+        android:layout_margin="30dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="NO CITIES ADDED YET"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textSize="20dp"
+        android:id="@+id/popUp_textView_xml"
+        android:textStyle="bold"/>
+
+</RelativeLayout>

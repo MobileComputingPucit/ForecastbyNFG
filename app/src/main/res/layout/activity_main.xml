@@ -11,9 +11,6 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
-
-
-
         <android.support.v4.widget.SwipeRefreshLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/swiperefresh_main_xml"
@@ -51,31 +48,14 @@
                 android:src="@drawable/settin_icon"/>
 
             <ImageView
-                android:id="@+id/location_imageView_main_xml"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toStartOf="@id/settings_btn_main_xml"
-                android:layout_alignBottom="@id/settings_btn_main_xml"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:clickable="true"
-                android:src="@android:drawable/ic_menu_mylocation" />
-
-
-            <EditText
-                android:id="@+id/cityName_editText_main_xml"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/locationsIcon_main_xml"
+                android:layout_alignTop="@id/settings_btn_main_xml"
                 android:layout_alignParentStart="true"
-                android:layout_alignBottom="@id/settings_btn_main_xml"
-                android:layout_alignParentTop="true"
-                android:layout_toLeftOf="@id/location_imageView_main_xml"
-                android:ems="10"
-                android:focusable="false"
-                android:clickable="true"
-                android:textColor="#c9a9d6"
-                android:textColorHint="#c9a9d6"
-                android:backgroundTint="#c9a9d6"
-                android:inputType="textPersonName"
-                android:hint="City Name" />
+                android:src="@drawable/search_location"/>
 
         </RelativeLayout>
 

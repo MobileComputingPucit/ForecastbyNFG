@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.ArrayAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -119,9 +121,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
 
-    public List<City> getAllCities()
+    public ArrayList<City> getAllCities()
     {
-        List<City> cityList = new ArrayList<City>();
+        ArrayList<City> cityList = new ArrayList<City>();
 
         String selectQuery = "SELECT * FROM " + CITY_TABLE_NAME;
 

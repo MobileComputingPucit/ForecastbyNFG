@@ -1,6 +1,7 @@
 package pk.edu.pucit.bcsf14m529.farazmazhar.forecastbynfg;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -60,6 +61,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         createWidget();
         initializeObject();
 
+        locationButton.setOnClickListener(this);
+        settingButton.setOnClickListener(this);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(_refAdapter);
@@ -85,8 +89,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buildGoogleApiClient();
         //displayLocation();
 
+    }
 
-
+    @Override
+    public void onClick(View view)
+    {
+        if(view.getId() == R.id.locationsIcon_main_xml)
+        {
+            Intent intent  = new Intent(getApplicationContext(),LocationsActivity.class);
+            startActivity(intent);
+        }
+        else if(view.getId() == R.id.settings_btn_main_xml)
+        {
+            Intent intent  = new Intent(getApplicationContext(),settings.class);
+            startActivity(intent);
+        }
     }
 
 
@@ -190,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void createWidget()
     {
         settingButton = (ImageView) findViewById(R.id.settings_btn_main_xml);
-        locationButton = (ImageView) findViewById(R.id.location_imageView_main_xml);
+        locationButton = (ImageView) findViewById(R.id.locationsIcon_main_xml);
 
         recyclerView =(RecyclerView) findViewById(R.id.recyclerView_main_xml);
         swipeRefreshLayout =(SwipeRefreshLayout) findViewById(R.id.swiperefresh_main_xml);
@@ -205,11 +222,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         _refAdapter = new Adapter(getApplicationContext(),weatherArrayList);
     }
 
-    @Override
-    public void onClick(View view)
-    {
-
-    }
 
     public void displayLocation() {
 
